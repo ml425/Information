@@ -1,0 +1,77 @@
+/* 栏目管理页面的样式  category */
+.category table th,.category table td{
+    text-align: center;
+}
+.category-tree{
+    width: 160px;
+    height: 100%;
+    float: left;
+    /* border: 1px solid #ccc; */
+}
+.ztree *{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.647058823529412);
+    line-height: 22px;
+    font-family: 'Arial Normal', 'Arial';
+}
+.category-content{
+    width: calc(100% - 160px);
+    height: 100%;
+    float: right;
+    padding-left: 10px;
+}
+.category-option>button:first-child{
+    margin-right: 20px;
+}
+.category-table{
+    margin-top: 20px;
+    height: calc(100% - 33.1px - 10px);
+}
+.category-table .table{
+    margin-bottom: 0;
+}
+.category-table-content{
+    height: calc(100% - 37px);
+    overflow: scroll;
+}
+.category-table .table th:first-child,.category-table .table td:first-child{
+    width: 70px;
+}
+.category-table .table th:first-child,.category-table .table td:first-child{
+    width: 50px;
+}
+.category-table .table th:nth-child(2),.category-table .table td:nth-child(2){
+    width: 200px;
+}
+.category-table .table th:nth-child(3),.category-table .table td:nth-child(3){
+    width: 200px;
+}
+.category-table .table th:nth-child(4),.category-table .table td:nth-child(4){
+    text-align: center;
+}
+.category-table .table th:nth-child(5){
+    width: 150px;
+}
+.category-table .table td:nth-child(5){
+    width: 133px;
+}
+.category-table .table span:first-child{
+    color: #c9302c;
+    font-size: 20px;
+    cursor: pointer;
+}
+.category-table .table span:last-child{
+    color: #286090;
+    margin-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+/* 树形结构 */
+#category-tree{
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    overflow: hidden;
+}

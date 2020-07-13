@@ -1,0 +1,111 @@
+/* 评论管理页面的样式  comment */
+.comment-top{
+    height: 100%;
+    /* width: 1090px; */
+}
+.comment-top a{
+    text-decoration: none;
+    font-size: 14px;
+}
+.comment table th,.comment table td{
+    text-align: center;
+}
+.comment-content{
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+}
+.comment-table{
+    margin-top: 20px;
+    height: 100%;
+}
+.comment-table .table{
+    margin-bottom: 0;
+}
+.comment .comment-table-content{
+    height: calc(100% - 37px - 40px);
+    overflow-y: scroll;
+}
+.comment-table .table th:first-child,.comment-table .table td:first-child{
+    width: 50px;
+}
+#home .comment-table .table th:nth-child(2),#home .comment-table .table td:nth-child(2){
+    width: 200px;
+}
+#home .comment-table .table th:nth-child(3),#home .comment-table .table td:nth-child(3){
+    width: 80px;
+}
+#home .comment-table .table th:nth-child(4),#home .comment-table .table td:nth-child(4){
+    width: 200px;
+}
+#home .comment-table .table th:nth-child(5),#home .comment-table .table td:nth-child(5){
+    width: 100px;
+}
+#home .comment-table .table th:nth-child(6),#home .comment-table .table td:nth-child(6){
+    width: 150px;
+}
+#home .comment-table .table th:nth-child(7),#home .comment-table .table td:nth-child(7){
+    width: 100px;
+}
+#messages .comment-table .table th:nth-child(2),#messages .comment-table .table td:nth-child(2){
+    width: 200px;
+}
+#messages .comment-table .table th:nth-child(3),#messages .comment-table .table td:nth-child(3){
+    width: 260px;
+}
+#messages .comment-table .table th:nth-child(4),#messages .comment-table .table td:nth-child(4){
+    width: 130px;
+}
+#messages .comment-table .table th:nth-child(5),#messages .comment-table .table td:nth-child(5){
+    width: 150px;
+}
+#messages .comment-table .table th:nth-child(6),#messages .comment-table .table td:nth-child(6){
+    width: 100px;
+}
+.comment-table .table span{
+    color: #286090;
+    font-size: 20px;
+    cursor: pointer;
+}
+.state-ok{
+    width: 45px;
+    line-height: 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #333333;
+    background-color: rgba(24, 144, 255, 1);
+    color: #fff;
+    padding: 3px 2px;
+    margin: 0 auto;
+}
+.state-ok>div{
+    width: 17px;
+    height: 17px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: right;
+}
+.state-no{
+    width: 45px;
+    line-height: 18px;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #333333;
+    background-color: rgba(0, 0, 0, 0.149019607843137);
+    color: #fff;
+    padding: 3px 2px;
+    margin: 0 auto;
+}
+.state-no>div{
+    width: 17px;
+    height: 17px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: left;
+}
+.comment .pagination{
+    margin: 0px;
+}
+.comment .tab-content{
+    height:  calc(100% - 33.1px - 10px - 40px);
+}

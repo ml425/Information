@@ -1,0 +1,556 @@
+<div class="user">
+  	<!-- 标签页 -->
+	<div class="user-top">
+      <!-- 标签导航 -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#home" class="tabs" aria-controls="home" role="tab" data-toggle="tab">管理员</a></li>
+        <li role="presentation"><a href="#messages" class="tabs" aria-controls="messages" role="tab" data-toggle="tab">编辑</a></li>
+        <li role="presentation"><a href="#settings" class="tabs" aria-controls="settings" role="tab" data-toggle="tab">会员</a></li>
+      </ul>
+      <!-- 标签面板 -->
+      <div class="tab-content">
+        <!-- 管理员 -->
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <button type="button" class="btn btn-info user-add">新增</button>
+          <div class="user-table">
+            <!-- <table class="table table-bordered">
+              	<thead>
+					<tr>
+						<th>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581326895641&di=dda42443eb3e835a91f0398f00b65909&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F35%2F34%2F19300001295750130986345801104.jpg"  class="table-image" alt="">
+						</th>
+					</tr>
+					<tr>
+						<th>用户名：
+							<span>vicky</span>
+						</th>
+					</tr>
+					<tr>
+						<th>真实姓名：
+							<span>乔美丽</span>
+						</th>
+					</tr>
+					<tr>
+						<th>手机号：
+							<span>18812344321</span>
+						</th>
+					</tr>
+					<tr>
+						<th>email：
+							<span>123@briup.com</span>
+						</th>
+					</tr>
+					<tr>
+						<th>操作：
+							<span>
+								<span class="user-delete">
+									<i class="fa fa-trash-o" title="删除"></i>
+								</span>
+								<span class="user-edit">
+									<i class="fa fa-pencil-square-o" title="修改"></i>
+								</span>
+							</span>
+						</th>
+					</tr>
+              	</thead>
+            </table> -->
+          </div>
+        </div>
+        <!-- 编辑 -->
+        <div role="tabpanel" class="tab-pane" id="messages">
+          <button type="button" class="btn btn-info user-add">新增</button>
+          <div class="user-table">
+            <!-- <table class="table table-bordered">
+              	<thead>
+					<tr>
+						<th>
+							<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581326895641&di=dda42443eb3e835a91f0398f00b65909&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F35%2F34%2F19300001295750130986345801104.jpg"  class="table-image" alt="">
+						</th>
+					</tr>
+					<tr>
+						<th>用户名：
+							<span>vicky</span>
+						</th>
+					</tr>
+					<tr>
+						<th>真实姓名：
+							<span>乔美丽</span>
+						</th>
+					</tr>
+					<tr>
+						<th>手机号：
+							<span>18812344321</span>
+						</th>
+					</tr>
+					<tr>
+						<th>email：
+							<span>123@briup.com</span>
+						</th>
+					</tr>
+					<tr>
+						<th>操作：
+							<span>
+								<span class="user-delete">
+									<i class="fa fa-trash-o" title="删除"></i>
+								</span>
+								<span class="user-edit">
+									<i class="fa fa-pencil-square-o" title="修改"></i>
+								</span>
+							</span>
+						</th>
+					</tr>
+              	</thead>
+            </table> -->
+          </div>
+        </div>
+        <!-- 会员 -->
+        <div role="tabpanel" class="tab-pane" id="settings">
+			<div class="user-table">
+				<!-- <table class="table table-bordered">
+					  <thead>
+						<tr>
+							<th>
+								<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581326895641&di=dda42443eb3e835a91f0398f00b65909&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F35%2F34%2F19300001295750130986345801104.jpg"  class="table-image" alt="">
+							</th>
+						</tr>
+						<tr>
+							<th>用户名：
+								<span>vicky</span>
+							</th>
+						</tr>
+						<tr>
+							<th>真实姓名：
+								<span>乔美丽</span>
+							</th>
+						</tr>
+						<tr>
+							<th>手机号：
+								<span>18812344321</span>
+							</th>
+						</tr>
+						<tr>
+							<th>email：
+								<span>123@briup.com</span>
+							</th>
+						</tr>
+						<tr>
+							<th>状态：
+								<span>
+									<div class="settings-normal">
+										正常
+										<div></div>
+									</div>
+								</span>
+							</th>
+						</tr>
+					  </thead>
+				</table> -->
+			</div>
+        </div>
+      </div>
+	</div>
+	<!-- 模态框 -->
+	<div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="user-modal">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="user-modalLabel">添加编辑</h4>
+			</div>
+			<div class="modal-body">
+				<!-- 表单 -->
+				<form class="form-horizontal">
+					<div class="form-group">
+					  <label for="user-name" class="col-sm-2 control-label">用户名</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="user-name" placeholder="请输入用户名">
+					  </div>
+					</div>
+					<div class="form-group">
+						<label for="user-password" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" id="user-password" placeholder="请输入密码">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="user-nickname" class="col-sm-2 control-label">真实姓名</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="user-nickname" placeholder="请输入真实姓名">
+						</div>
+					  </div>
+					<div class="form-group">
+					  <label for="user-tel" class="col-sm-2 control-label">手机号</label>
+					  <div class="col-sm-10">
+						<input type="tel" class="form-control" id="user-tel" placeholder="请输入手机号">
+					  </div>
+					</div>
+					<div class="form-group">
+					  <label for="user-email" class="col-sm-2 control-label">email</label>
+					  <div class="col-sm-10">
+						<input type="email" class="form-control" id="user-email" placeholder="请输入邮箱">
+					  </div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			<button type="button" class="btn btn-primary" id="user-save">确定</button>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<script>
+	// 所有的栏目数据
+	var userData = [];
+	// 当前修改的栏目对象
+	var currentUser = {};
+	var temp = '';
+	var temp2 = '';
+	findAll();
+	// 获取栏目数据,遍历需要的数据对象，追加表格节点
+	function findAll(){
+		$('.user-table').empty();
+		myAjax('/manager/user/findAllUser','get',{},function(res){
+			// console.log(res);
+			//用来判断新增的数据追加在那个板块里面
+			temp = 'ok';
+			// res.data所有的栏目数据
+			userData = res.data;
+			// 筛选出所有的管理员数据
+			var admins = userData.filter(function(item){
+				return item.role == 'admin';
+			});
+			// 筛选出所有的编辑数据
+			var editor = userData.filter(function(item){
+				return item.role == 'editor';
+			});
+			// 筛选出所有的会员数据
+			var user = userData.filter(function(item){
+				return item.role == 'user';
+			});
+			// 1.显示数据在表格中
+			if(temp == 'ok' || temp2 == 'admin'){
+				admins.forEach(function (item){
+				// item指向每一个date对象
+				var $table = $(`<table class="table table-bordered">
+              	<thead>
+					<tr>
+						<th>
+							<img src="`+item.userface+`"  class="table-image" alt="该用户没有头像">
+						</th>
+					</tr>
+					<tr>
+						<th>用户名：
+							<span>`+item.username+`</span>
+							<input type="checkbox" value="`+item.id+`">
+						</th>
+					</tr>
+					<tr>
+						<th>真实姓名：
+							<span>`+item.nickname+`</span>
+						</th>
+					</tr>
+					<tr>
+						<th>手机号：
+							<span>18812344321</span>
+						</th>
+					</tr>
+					<tr>
+						<th>email：
+							<span>`+item.email+`</span>
+						</th>
+					</tr>
+					<tr>
+						<th>操作：
+							<span>
+								<span class="user-delete">
+									<i class="fa fa-trash-o" title="删除"></i>
+								</span>
+								<span class="user-edit">
+									<i class="fa fa-pencil-square-o" title="修改"></i>
+								</span>
+							</span>
+						</th>
+					</tr>
+              	</thead>
+            </table>`);
+				$('#home .user-table').append($table);
+			});
+			}
+			if(temp == 'ok' || temp2 =='editor'){
+				editor.forEach(function (item){
+				// item指向每一个date对象
+				var $table = $(`<table class="table table-bordered">
+              	<thead>
+					<tr>
+						<th>
+							<img src="`+item.userface+`"  class="table-image " alt="该用户没有头像">
+						</th>
+					</tr>
+					<tr>
+						<th>用户名：
+							<span>`+item.username+`</span>
+							<input type="checkbox" value="`+item.id+`">
+						</th>
+					</tr>
+					<tr>
+						<th>真实姓名：
+							<span>`+item.nickname+`</span>
+						</th>
+					</tr>
+					<tr>
+						<th>手机号：
+							<span>18812344321</span>
+						</th>
+					</tr>
+					<tr>
+						<th>email：
+							<span>`+item.email+`</span>
+						</th>
+					</tr>
+					<tr>
+						<th>操作：
+							<span>
+								<span class="user-delete">
+									<i class="fa fa-trash-o" title="删除"></i>
+								</span>
+								<span class="user-edit">
+									<i class="fa fa-pencil-square-o" title="修改"></i>
+								</span>
+							</span>
+						</th>
+					</tr>
+              	</thead>
+            </table>`);
+				$('#messages .user-table').append($table);
+			});
+			}
+			if(temp == 'ok'){
+			user.forEach(function (item){
+				// console.log(item.id);
+				// item指向每一个date对象
+				if(item.enabled == true){
+					var $table = $(`<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>
+								<img src="`+item.userface+`"  class="table-image" alt="该用户没有头像">
+							</th>
+						</tr>
+						<tr>
+							<th>用户名：
+								<span>`+item.username+`</span>
+								<input type="checkbox" value="`+item.id+`">
+							</th>
+						</tr>
+						<tr>
+							<th>真实姓名：
+								<span>`+item.nickname+`</span>
+							</th>
+						</tr>
+						<tr>
+							<th>手机号：
+								<span>18812344321</span>
+							</th>
+						</tr>
+						<tr>
+							<th>email：
+								<span>`+item.email+`</span>
+							</th>
+						</tr>
+						<tr>
+							<th>操作：
+								<span>
+									<div class="settings-normal" id="settings-state">
+										正常
+										<div></div>
+									</div>
+								</span>
+							</th>
+						</tr>
+					</thead>
+				</table>`);
+				}else{
+					var $table = $(`<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>
+								<img src="`+item.userface+`"  class="table-image" alt="该用户没有头像">
+							</th>
+						</tr>
+						<tr>
+							<th>用户名：
+								<span>`+item.username+`</span>
+								<input type="checkbox" value="`+item.id+`">
+							</th>
+						</tr>
+						<tr>
+							<th>真实姓名：
+								<span>`+item.nickname+`</span>
+							</th>
+						</tr>
+						<tr>
+							<th>手机号：
+								<span>18812344321</span>
+							</th>
+						</tr>
+						<tr>
+							<th>email：
+								<span>`+item.email+`</span>
+							</th>
+						</tr>
+						<tr>
+							<th>操作：
+								<span>
+									<div class="settings-ban" id="settings-state">
+										禁言
+										<div></div>
+									</div>
+								</span>
+							</th>
+						</tr>
+					</thead>
+				</table>`);
+				}
+				$('#settings .user-table').append($table);
+			});
+			}
+		});
+	}
+
+  	// 新增  设置模态框标题，清空内部表单内容，显示模态框
+	$('.user-add').click(function(){
+		//重置，将内容清空，放置数据重复
+		currentUser = {};
+		// 将栏目对象中的数据设置到表单中，新增时表单要为空
+		$('#user-name').val('');
+		$('#user-password').val('');
+		$('#user-nickname').val('');
+		$('#user-tel').val('');
+		$('#user-email').val('');
+		temp = 'no';
+		// console.log(temp);
+		if($(this).closest('div').attr('id') == 'home'){
+			temp2 = 'admin';
+		}else if($(this).closest('div').attr('id') == 'messages'){
+			temp2 = 'editor';
+		}
+		console.log($(this).closest('div').attr('id'));
+		// 显示模态框
+		$('#user-modal').modal('show');
+		// 设置模态框标题
+		$('.modal-title').text('添加编辑');
+	});
+
+	// 修改  事件代理 设置模态框标题，设置内部表单内容，显示模态框
+	$('.user-table').on('click','.user-edit',function(){
+		var id = $(this).closest('thead').find('[type=checkbox]').val();
+		// 通过id获取当前修改的对象，要去所有的栏目数组中进行过滤
+		currentUser = userData.filter(function(item){
+			return item.id == id;
+		})[0];
+		// console.log($(this)); 
+		console.log($(this).closest('thead'));    //*********编辑里面的修改出不来
+		// 将栏目对象中的数据设置到表单中
+		$('#user-name').val(currentUser.username);
+		$('#user-password').val(currentUser.password);
+		$('#user-nickname').val(currentUser.nickname);
+		$('#user-tel').val('18812344321');
+		$('#user-email').val(currentUser.email);
+
+		// 显示模态框
+		$('#user-modal').modal('show');
+		// 设置模态框标题
+		$('.modal-title').text('修改咨询');
+	});
+
+	// 保存  模态框内的确定按钮 获取数据，验证数据，访问后台保存，更新数据，关闭模态框
+	$('#user-save').click(function(){
+		// 获取表单数据
+		var username = $('#user-name').val();
+		var password = $('#user-password').val();
+		var nickname = $('#user-nickname').val();
+		var email = $('#user-email').val();
+		// 验证数据   
+		if(username && password && nickname && email){
+			// 封装数据，保存   
+			var obj = {
+				id:currentUser.id,
+				username:username,
+				password:password,
+				nickname:nickname,
+				email:email,
+			};
+			myAjax('/manager/user/reg','post',obj,function(res){
+				if(res.status == 200){
+					findAll();
+					// 模态框关闭
+					$('#user-modal').modal('hide');
+				}else{
+					alert('保存失败');
+				}
+			})
+		}else{
+			alert('请输入完整信息');
+		}
+	});
+
+	// 单个删除  事件代理
+	$('.user-table').on('click','.user-delete',function(){
+		// 获取要删除id
+		var id = $(this).closest('thead').find('[type=checkbox]').val();
+		console.log($(this).closest('tr'));
+		console.log($(this).closest('tr').find('[type=checkbox]'));
+		console.log(id);
+		var result = confirm('这项操作会使数据丢失，你确定要进行此操作吗？');
+		if(result){
+			// 删除  与后台进行数据交互
+			myAjax('/manager/user/deleteUserById','get',{id:id},function(res){
+				if(res.status == 200){
+					// 更新页面的数据
+					findAll();
+				}else{
+					alert('删除不成功');
+				}
+			},function(err){
+				alert('删除失败');
+			})
+		}
+	});
+
+	// 修改用户状态
+	$('.user-table').on('click','#settings-state',function(){
+		if($(this).attr('class') == 'settings-ban'){
+		$(this).attr('class','settings-normal');
+		$(this).html('正常 <div></div>');
+		}else{
+		$(this).attr('class','settings-ban');
+		$(this).html('禁言 <div></div>');
+		}
+		// 获取要修改的用户的id
+		var id = $(this).closest('tr').find('[type=checkbox]').val();
+		console.log($(this).closest('tr'));
+		console.log($(this).closest('tr').find('[type=checkbox]'));
+		console.log(id);
+		myAjax('/manager/user/changeStatus','get',{id:id},function(res){
+				if(res.status == 200){
+					// 更新页面的数据
+					findAll();
+				}else{
+					alert('修改不成功');
+				}
+			},function(err){
+				alert('修改失败');
+			})
+	});
+
+  // 选中的标签字体颜色变化
+  var arrayTabs = $('.tabs').toArray();
+  arrayTabs.forEach(function(item){
+    $(item).click(function(){
+      $('.tabs').css('color','#000');
+      $(item).css('color','#1890FF');
+    });
+  });
+</script>

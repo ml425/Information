@@ -1,0 +1,435 @@
+<div class="article">
+	<div class="article-top">
+		<div class="article-option">
+			<button type="button" class="btn btn-info" id="article-add">新增</button>
+			<button type="button" class="btn btn-info" id="article-batch-del">批量删除</button>
+		</div>
+		<div class="article-search">
+				<label for="date">选择日期：</label>
+				<input type="date" id="date1" placeholder="2020-01-02">
+				<input type="date" id="date2" placeholder=" ～ 2020-01-05">
+				<i></i>
+				<input type="search" id="search" placeholder="请输入标题或作者">
+				<i></i>
+				<label for="search" class="btn btn-info" id="article-lable-search">搜索</label>
+				<button type="button" class="btn btn-primary" id="article-reset">重置</button>
+		</div>
+	</div>
+	<div class="article-content">
+		<div class="article-table">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>编号</th>
+						<th>文章标题</th>
+						<th>所属栏目</th>
+						<th>作者</th>
+						<th>发布时间</th>
+						<th>阅读次数</th>
+						<th>状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+			</table>
+			<div class="article-table-content">
+				<table class="table table-bordered">
+					<tbody>
+						<!-- <tr>
+							<td>
+								<input type="checkbox" value="">
+							</td>
+							<td>文章标题</td>
+							<td>所属栏目</td>
+							<td>作者</td>
+							<td>发布时间</td>
+							<td>阅读次数</td>
+							<td>状态</td>
+							<td>
+								<span class="article-delete">
+									<i class="fa fa-trash-o" title="删除"></i>
+								</span>
+								<span class="article-edit">
+									<i class="fa fa-pencil-square-o" title="修改"></i>
+								</span>
+							</td>
+						</tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 分页部分 -->
+		<div class="article-paging">
+			<nav aria-label="Page navigation">
+				<ul class="pagination">
+				  <li>
+					<a href="#" aria-label="Previous" class="paging">
+					  <span aria-hidden="true">&laquo;</span>
+					</a>
+				  </li>
+				  <li id="paging-one"><a href="#">1</a></li>
+				  <li id="paging-two"><a href="#" class="paging">2</a></li>
+				  <li id="paging-three"><a href="#" class="paging">3</a></li>
+				  <li id="paging-four"><a href="#" class="paging">4</a></li>
+				  <li id="paging-five"><a href="#" class="paging">5</a></li>
+				  <li id="paging-five"><a href="#" class="paging">6</a></li>
+				  <li>
+					<a href="#" aria-label="Next" class="paging">
+					  <span aria-hidden="true">&raquo;</span>
+					</a>
+				  </li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- 模态框 -->
+	<div class="modal fade" id="article-modal" tabindex="-1" role="dialog" aria-labelledby="article-modal">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="article-modalLabel">新增咨询</h4>
+			</div>
+			<div class="modal-body">
+				<!-- 表单 -->
+				<form class="form-horizontal">
+					<div class="form-group">
+					  <label for="article-name" class="col-sm-2 control-label">文章标题</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="article-name" placeholder="请输入文章标题">
+					  </div>
+					</div>
+					<div class="form-group">
+						<label for="article-parent" class="col-sm-2 control-label">所属栏目</label>
+						<div class="col-sm-10">
+							<select id="article-parent" class="form-control">
+								<!-- 放所有的所属栏目 -->
+							  </select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="article-image" class="col-sm-2 control-label">列表缩略图</label>
+						<div class="col-sm-10">
+							<button type="button" class="btn btn-link">点击上传</button>
+						</div>
+					  </div>
+					<div class="form-group">
+					  <label for="article-comment" class="col-sm-2 control-label">正文</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="article-comment" placeholder="请输入正文">
+					  </div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			<button type="button" class="btn btn-primary" id="article-save">确定</button>
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<script>
+	// 当前页面的文章数据
+	var articleData = [];
+	// 当前修改的栏目对象
+	var currentArticle = {};
+	// 获取category里面的所有数据 设置模态框中的父栏目遍历  追加option
+	myAjax('/manager/category/findAllCategory','get',{},function(res){
+			// res.data所有的栏目数据
+			// 过滤出所有的父栏目  21个
+			var parent = res.data.filter(function(item){
+				return !item.parent;
+			});
+			// console.log(parent);
+			$('#article-parent').empty();
+			$('#article-parent').append('<option value="">请选择</option>');
+			res.data.forEach(function(item){
+				var $option = $('<option value="'+item.id+'">'+item.name+'</option>');
+				$('#article-parent').append($option);
+			});
+		});
+	// 获取栏目数据,遍历需要的数据对象，追加表格节点
+	function findAll(test){
+		$('.paging').css({color:'#000',backgroundColor:'#fff'});
+		$(this).css({color:'#fff',backgroundColor:'#31b0d5'});
+		$('#paging-one a').css({color:'#000',backgroundColor:'#fff'});
+		if($(this).text() == '1'){
+			test = 0;
+		}else if($(this).text() == '2'){
+			test = 1;
+		}else if($(this).text() == '3'){
+			test = 2;
+		}else if($(this).text() == '4'){
+			test = 3;
+		}else if($(this).text() == '5'){
+			test = 4;
+		}else if($(this).text() == '6'){
+			test = 5;
+		}else if($(this).attr('aria-label') == 'Previous'){
+			$('.paging').eq(0).css({color:'#000',backgroundColor:'#fff'});
+			if(copyTest == 1 || copyTest == 0){
+				test = 0;
+				$('#paging-one a').css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 2){
+				test = 1;
+				$('.paging').eq(1).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 3){
+				test = 2;
+				$('.paging').eq(2).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 4){
+				test = 3;
+				$('.paging').eq(3).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 5){
+				test = 4;
+				$('.paging').eq(4).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}
+		}else if($(this).attr('aria-label') == 'Next'){
+			$('.paging').eq(6).css({color:'#000',backgroundColor:'#fff'});
+			if(copyTest == 4 || copyTest == 5){
+				test = 5;
+				$('.paging').eq(5).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 3){
+				test = 4;
+				$('.paging').eq(4).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 2){
+				test = 3;
+				$('.paging').eq(3).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 1){
+				test = 2;
+				$('.paging').eq(2).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}else if(copyTest == 0){
+				test = 1;
+				$('.paging').eq(1).css({color:'#fff',backgroundColor:'#31b0d5'});
+			}
+		}
+		$('.article tbody').empty();
+		myAjax('/manager/article/findArticle','get',{page:test,pageSize:10},function(res){
+			// res.data.list当前页面的文章数据
+			articleData = res.data.list;
+			// console.log(articleData);
+			// console.log(articleData.length);
+			// 1.显示数据在表格中
+			for(let i=0;i<articleData.length;i++){
+				(function (item){
+				// item指向每一个list对象
+					var $tr = $(`<tr>
+						<td>
+							<input type="checkbox" value="`+item.id+`">
+						</td>
+						<th>`+item.title+`</th>
+						<th>`+((item.category)?(item.category.name):'null')+`</th>
+						<th>`+((item.author)?(item.author.username):'null')+`</th>
+						<th>`+item.publishtime+`</th>
+						<th>`+item.readtimes+`</th>
+						<th>`+item.status+`</th>
+						<td>
+							<span class="article-delete">
+								<i class="fa fa-trash-o" title="删除"></i>
+							</span>
+							<span class="article-edit">
+								<i class="fa fa-pencil-square-o" title="修改"></i>
+							</span>
+						</td>
+					</tr>`);
+				$('.article tbody').append($tr);
+			})(articleData[i]);
+			}
+			// articleData.forEach(function (item){
+			// 	// item指向每一个list对象
+			// 	var $tr = $(`<tr>
+			// 			<td>
+			// 				<input type="checkbox" value="`+item.id+`">
+			// 			</td>
+			// 			<th>`+item.title+`</th>
+			// 			<th>`+item.category.name+`</th>
+			// 			<th>`+item.author.username+`</th>
+			// 			<th>`+item.publishtime+`</th>
+			// 			<th>`+item.readtimes+`</th>
+			// 			<th>`+item.status+`</th>
+			// 			<td>
+			// 				<span class="article-delete">
+			// 					<i class="fa fa-trash-o" title="删除"></i>
+			// 				</span>
+			// 				<span class="article-edit">
+			// 					<i class="fa fa-pencil-square-o" title="修改"></i>
+			// 				</span>
+			// 			</td>
+			// 		</tr>`);
+			// 	console.log(item);
+			// 	console.log('-----');
+			// 	$('.article tbody').append($tr);
+			// });
+
+		});
+		copyTest = test;
+	}
+	// 刷新页面就展示第一页
+	$('#paging-one').click( function(){
+		findAll(0);
+		$('#paging-one a').css({color:'#fff',backgroundColor:'#31b0d5'});
+	}).trigger('click');
+	// 事件代理  换页
+	$('.pagination').on('click','.paging',findAll);
+
+	// 新增  设置模态框标题，清空内部表单内容，显示模态框
+	$('#article-add').click(function(){
+		//重置，将内容清空，放置数据重复
+		currentArticle = {};
+		// 将栏目对象中的数据设置到表单中
+		$('#article-name').val('');
+		$('#article-parent').val('');
+		$('#article-image').val('');
+		$('#article-comment').val('');
+		
+		// 显示模态框
+		$('#article-modal').modal('show');
+		// 设置模态框标题
+		$('.modal-title').text('添加咨询');
+	});
+
+	// 修改  事件代理 设置模态框标题，设置内部表单内容，显示模态框
+	$('.article-table-content').on('click','.article-edit',function(){
+		var id = $(this).closest('tr').find('[type=checkbox]').val();
+		// 通过id获取当前修改的对象，要去所有的栏目数组中进行过滤
+		currentArticle = articleData.filter(function(item){
+			return item.id == id;
+		})[0];
+		console.log(articleData);
+		console.log(currentArticle);
+		console.log(currentArticle.category.name);
+		// 将栏目对象中的数据设置到表单中
+		$('#article-name').val(currentArticle.title);
+		$('#article-parent').val(currentArticle.category.name);
+		$('#article-image').val((currentArticle.author?currentArticle.author.userface:''));
+		$('#article-comment').val(currentArticle.content);
+
+		// 显示模态框
+		$('#article-modal').modal('show');
+		// 设置模态框标题
+		$('.modal-title').text('修改咨询');
+	});
+
+	// 保存  模态框内的确定按钮 获取数据，验证数据，访问后台保存，更新数据，关闭模态框
+	$('#article-save').click(function(){
+		// alert(1);
+		// 获取表单数据
+		var name = $('#article-name').val();
+		var categoryId = $('#article-parent').val();
+		var image = $('#article-image').val();
+		var comment = $('#article-comment').val();
+		// 验证数据
+		if(name && categoryId && comment){
+			// 封装数据，保存   **8***888*8*
+			var obj = {
+				id:currentArticle.id,
+				title:name,
+				liststyle:currentArticle.liststyle?currentArticle.liststyle:'true',
+				content:comment,
+				no:null,
+				categoryId:categoryId,
+				parentId: 1
+			};
+			myAjax('/manager/article/saveOrUpdateArticle','post',obj,function(res){
+				if(res.status == 200){
+					findAll(0);
+					findAll(1);
+					findAll(2);
+					findAll(3);
+					findAll(4);
+					findAll(5);
+					alert('保存成功');
+					// 模态框关闭
+					$('#article-modal').modal('hide');
+				}else{
+					alert('保存失败');
+					// 模态框关闭
+					$('#article-modal').modal('hide');
+				}
+			})
+		}else{
+			alert('请输入文章标题和所属栏目');
+		}
+	});
+
+	// 单个删除  事件代理
+	$('.article-table-content').on('click','.article-delete',function(){
+		// 获取要删除id
+		var id = $(this).closest('tr').find('[type=checkbox]').val();
+		var result = confirm('这项操作会使数据丢失，你确定要进行此操作吗？');
+		if(result){
+			// 删除  与后台进行数据交互
+			myAjax('/manager/article/deleteArticleById','get',{id:id},function(res){
+				if(res.status == 200){
+					// 更新页面的数据
+					findAll(copyTest);
+				}else{
+					alert('删除失败');
+				}
+			},function(err){
+				alert('删除失败');
+			})
+		}
+	});
+
+	// 批量删除
+	$('#article-batch-del').click(function(){
+		// 获取用户选中的复选按钮的id，类数组
+		var $ids = $('.article-table-content :checkbox:checked').map(function(index,item){
+			return item.value;
+		});
+		// 转成数组
+		var ids = $ids.toArray();
+		// console.log(ids);
+		if(ids.length>0){
+			var result = confirm('这项操作会使数据丢失，你确定要进行此操作吗？');
+			if(result){
+				// 批量删除
+				myAjax('/manager/article/batchDeleteArticle','post',{ids:ids.toString()},function(res){
+					if(res.status == 200){
+						// 更新页面的数据
+						findAll(copyTest);
+					}else{
+						alert('批量删除失败');
+						// 将勾选的选中状态清除
+						$('.article-table-content :checkbox:checked').prop('checked',false);
+					}
+				},function(err){
+					alert('批量删除失败');
+					// 将勾选的选中状态清除
+					$('.article-table-content :checkbox:checked').prop('checked',false);
+				})
+			}else{
+				// 将勾选的选中状态清除
+				$('.article-table-content :checkbox:checked').prop('checked',false);
+			}
+		}else{
+			alert('请勾选要删除的数据');
+		}
+	});
+
+	// 搜索
+	$('#article-lable-search').click(function(){
+		alert(1);
+		// 先清空表单
+		$('.article tbody').empty();
+		// 拿到满足条件的数据再追加到表单上
+		myAjax('/manager/article/findArticle','get',{},function(res){
+			//  dates 满足条件的栏目对象数组
+			console.length($('#date1').val());
+			var datas = res.data.list.map(function(item){
+				return ($('#date1').val()<= item.publishtime <= $('#date2').val()) && ((item.title == $('#search').val() || ((item.author)?(item.author.username==$('#search').val()):'null')));
+			});
+			console.log(datas);
+			// 遍历数组  将满足条件的对象一个一个追加到表单中
+			datas.forEach(function(item){
+				$('.article tbody').append(item);
+			});
+		})
+	});
+
+	// 重置
+	$('#article-reset').click(function(){
+		$('#date').val('');
+		$('#search').val('');
+	});
+</script>

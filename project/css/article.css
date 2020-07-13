@@ -1,0 +1,99 @@
+/* 文章管理页面的样式  article */
+.article table th,.article table td{
+    text-align: center;
+}
+.article-top{
+    overflow: hidden;
+}
+.article-option{
+    float: left;
+}
+.article-option>button:first-child{
+    margin-right: 20px;
+}
+.article-search{
+    float: right;
+    position: relative;
+}
+.article-search input{
+    border-radius: 3px;
+    line-height: 30px;
+    width: 200px;
+    color: rgba(216, 216, 216, 1);
+    border: 1px solid rgba(216, 216, 216, 1);
+    background-color: #fff;
+}
+.article-search input:nth-of-type(1){
+    width: 120px;
+    border-right: none;
+}
+.article-search input:nth-of-type(2){
+    width: 130px;
+    border-left: none;
+    position: relative;
+    left: -10px;
+}
+.article-search i{
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-size: 100%;
+    position: absolute;
+    top: 10px;
+    color: rgba(216, 216, 216, 1);
+}
+.article-search i:nth-of-type(1){
+    background-image: url(../images/u401.png);
+    right: 330px;
+}
+.article-search i:nth-of-type(2){
+    background-image: url(../images/u396.png);
+    right: 120px;
+}
+.article-content{
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+}
+.article-table{
+    margin-top: 20px;
+    height: calc(100% - 33.1px - 10px - 70px);
+}
+.article-table .table{
+    margin-bottom: 0;
+}
+.article-table-content{
+    height: calc(100% - 37px);
+    overflow: scroll;
+}
+.article-table .table th:first-child,.article-table .table td:first-child{
+    width: 50px;
+}
+.article-table .table th:nth-child(2),.article-table .table td:nth-child(2){
+    width: 200px;
+}
+.article-table .table th:nth-child(3),.article-table .table td:nth-child(3){
+    width: 200px;
+}
+.article-table .table th:nth-child(4),.article-table .table td:nth-child(4){
+    width: 100px;
+}
+.article-table .table th:nth-child(5),.article-table .table td:nth-child(5){
+    width: 130px;
+}
+.article-table .table th:nth-child(6),.article-table .table td:nth-child(6){
+    width: 100px;
+}
+.article-table .table th:nth-child(7),.article-table .table td:nth-child(7){
+    width: 100px;
+}
+.article-table .table span:first-child{
+    color: #c9302c;
+    font-size: 20px;
+    cursor: pointer;
+}
+.article-table .table span:last-child{
+    color: #286090;
+    font-size: 20px;
+    cursor: pointer;
+}

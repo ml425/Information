@@ -1,0 +1,99 @@
+/* 用户管理页面的样式  user */
+.user-top{
+    height: 100%;
+    /* width: 1090px; */
+}
+.user-top a{
+    text-decoration: none;
+    font-size: 14px;
+}
+.tab-content{
+    height: calc(100% - 10px);
+}
+.tab-content>div{
+    height: 100%;
+}
+.tab-content button{
+    margin-top: 10px;
+}
+.user-table{
+    margin-top: 20px;
+    height: calc(100% - 33.1px - 10px);
+    overflow-y: scroll;
+}
+.user-table .table{
+    margin-bottom: 0;
+    margin-right: 7px;
+    width: 237px;
+    height: 300px;
+    border: 3px solid rgba(153, 153, 153, 1);
+    border-radius: 5px;
+    border-collapse:initial;
+    display: inline-block;
+}
+.user-table .table th input{
+    display: none;
+}
+.user-table .table > thead > tr > th{
+    border: none;
+    padding: 5px 20px;
+}
+.user-table .table > thead > tr:first-child th{
+    padding-bottom: 0;
+    text-align: center;
+}
+.user-table .table > thead > tr:nth-child(2) th{
+    padding-top: 0;
+}
+.table-image{
+    width: 128px;
+    height: 128px;
+    display: inline-block;
+    background-size: 100%;
+}
+.user-table .table tr > th >span{
+    color: #A0A0A0;
+    text-align: center;
+    width: 90px;
+    display: inline-block;
+}
+.user-table tr:last-child span:first-child{
+    color: #c9302c;
+    font-size: 20px;
+    cursor: pointer;
+}
+.user-table tr:last-child span:last-child{
+    color: #286090;
+    font-size: 20px;
+    cursor: pointer;
+}
+.settings-normal{
+    width: 44px;
+    height: 19px;
+    border-radius: 10px;
+    font-size: 10px;
+    color: #333333;
+    background-color: rgba(19, 206, 102, 1);
+}
+.settings-normal div{
+    width: 19px;
+    height: 19px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: right;
+}
+.settings-ban{
+    width: 44px;
+    height: 19px;
+    border-radius: 10px;
+    font-size: 10px;
+    color: #333333;
+    background-color: rgba(204, 204, 204, 1);
+}
+.settings-ban div{
+    width: 19px;
+    height: 19px;
+    background-color: #fff;
+    border-radius: 50%;
+    float: left;
+}

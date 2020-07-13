@@ -1,0 +1,209 @@
+<div class="home">
+		<div id="one"></div>
+		<div id="two"></div>
+		<div id="three"></div>
+		<div id="four"></div>
+</div>
+<script>
+	one();
+	two();
+	three();
+	four();
+    function one(){
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('one'));
+
+    // 指定图表的配置项和数据
+    var option = {
+            // title: {
+            //     text: '流量统计'
+            // },
+            tooltip: {},
+            // 图例
+            legend: {
+                data:['流量']
+            },
+            // 坐标轴内容
+            xAxis: {
+                data: ["2019-10","2019-11","2019-12","2020-01","2020-02","2020-03"]
+            },
+            yAxis: {},
+            // 数据
+            series: [{
+                name: '流量',
+                type: 'bar',
+                data: [150, 200, 360, 300, 210, 280]
+            }]
+        };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  }
+  	function two(){
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('two'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			// title: {
+			// 	text: '折线图堆叠'
+			// },
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data: ['tokyo', 'london']
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+				{
+					name: 'tokyo',
+					type: 'line',
+					stack: '总量',
+					data: [70, 132, 101, 230, 90, 134, 110]
+				},
+				{
+					name: 'london',
+					type: 'line',
+					stack: '总量',
+					data: [120, 182, 191, 330, 290, 234, 210]
+				}
+			]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	}
+	function three(){
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('three'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			tooltip: {
+				trigger: 'item',
+				formatter: '{a} <br/>{b}: {c} ({d}%)'
+			},
+			legend: {
+				orient: 'vertical',
+				left: 10,
+				data: ['Tom', 'Mary', 'Jim', 'Tony', 'May']
+			},
+			series: [
+				{
+					name: '访问来源',
+					type: 'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						show: false,
+						position: 'center'
+					},
+					emphasis: {
+						label: {
+							show: true,
+							fontSize: '30',
+							fontWeight: 'bold'
+						}
+					},
+					labelLine: {
+						show: false
+					},
+					data: [
+						{value: 335, name: 'Tom'},
+						{value: 310, name: 'Mary'},
+						{value: 234, name: 'Jim'},
+						{value: 135, name: 'Tony'},
+						{value: 1548, name: 'May'}
+					]
+				}
+			]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	}
+	function four(){
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('four'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			// title: {
+			// 	text: '堆叠区域图'
+			// },
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'cross',
+					label: {
+						backgroundColor: '#6a7985'
+					}
+				}
+			},
+			legend: {
+				data: ['tokyo', 'london']
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			xAxis: [
+				{
+					type: 'category',
+					boundaryGap: false,
+					data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+				}
+			],
+			yAxis: [
+				{
+					type: 'value'
+				}
+			],
+			series: [
+				{
+					name: 'tokyo',
+					type: 'line',
+					stack: '总量',
+					areaStyle: {},
+					data: [70, 132, 101, 230, 90, 134, 110]
+				},
+				{
+					name: 'london',
+					type: 'line',
+					stack: '总量',
+					areaStyle: {},
+					data: [120, 182, 191, 330, 290, 234, 210]
+				}
+			]
+		};
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+	}
+</script>
